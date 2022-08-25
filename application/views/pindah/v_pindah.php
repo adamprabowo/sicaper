@@ -71,63 +71,62 @@
       <div class="modal fade" id="modal-lg">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-          <form id="quickForm">
-            <div class="modal-header">
-              <h4 class="modal-title">Input Data Perpindahan</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- jquery validation -->
-                <!-- /.card-header -->
-                <!-- form start -->
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="number" name="nik" class="form-control" id="nik" placeholder="Isikan NIK">
-                        </div>
-                        <div class="form-group">
-                            <label for="no_kk">Nomor KK</label>
-                            <input type="number" name="no_kk" class="form-control" id="noKK" placeholder="Isikan Nomor KK">
-                        </div>
-                        <div class="form-group">
-                            <label for="no_skpwni">Nomor SKPWNI</label>
-                            <input type="text" name="no_SKPWNI" class="form-control" id="noSKPWNI" placeholder="Isikan Nomor SKPWNI">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
-                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="desa">Desa</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">Mrentul</option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                        <label>Tanggal Pindah</label>
-                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
+            <form method="POST" enctype="multipart/form-data" action="<?=base_url()?>pindah/inputPerpindahan">
+              <div class="modal-header">
+                <h4 class="modal-title">Input Data Perpindahan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- jquery validation -->
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                      <div class="card-body">
+                          <div class="form-group">
+                              <label for="nik">NIK</label>
+                              <input type="number" name="nik" class="form-control" id="nik" placeholder="Isikan NIK">
+                          </div>
+                          <div class="form-group">
+                              <label for="no_kk">Nomor KK</label>
+                              <input type="number" name="no_kk" class="form-control" id="noKK" placeholder="Isikan Nomor KK">
+                          </div>
+                          <div class="form-group">
+                              <label for="no_skpwni">Nomor SKPWNI</label>
+                              <input type="text" name="no_SKPWNI" class="form-control" id="noSKPWNI" placeholder="Isikan Nomor SKPWNI">
+                          </div>
+                          <div class="form-group">
+                              <label for="nama">Nama</label>
+                              <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama">
+                          </div>
+                          <div class="form-group">
+                              <label for="desa">Desa</label>
+                              <select type="number" name="desa" class="form-control select2" style="width: 100%;">
+                                <?php
+                                  foreach ($desa as $ds) {
+                                      echo "<option value=".$ds->id.">$ds->desa</option>";
+                                  }
+                                ?>	
+                              </select>
+                          </div>
+                          <div class="form-group">
+                          <label>Tanggal Pindah</label>
+                              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                  <input type="text" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                              </div>
+                          </div>
+                          <input type="hidden" value="<?php echo date('m/d/y');?>"/>
+                      </div>
+                      <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+              </div>
             </form>
           </div>
           <!-- /.modal-content -->

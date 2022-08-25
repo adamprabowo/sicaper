@@ -15,6 +15,11 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+<?php if (isset($error_message)) {
+  echo "<div class='alert alert-warning'>$error_message</div>";
+  }elseif ($this->session->flashdata('message')) { ?>
+  <div class='alert alert-warning'><?php echo $this->session->flashdata('message'); ?></div>
+<?php	} ?>
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
@@ -25,17 +30,17 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="<?=base_url()?>assets/index3.html" method="post">
+      <form action="<?=base_url()?>login/action" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Username">
+          <input type="text" name="username" class="form-control" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

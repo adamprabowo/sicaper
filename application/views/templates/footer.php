@@ -36,6 +36,26 @@
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
 <!-- Page specific script -->
 
+
+<!-- Select2 -->
+<script src="<?=base_url()?>assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="<?=base_url()?>assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="<?=base_url()?>assets/plugins/moment/moment.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?=base_url()?>assets/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="<?=base_url()?>assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?=base_url()?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- BS-Stepper -->
+<script src="<?=base_url()?>assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<!-- dropzonejs -->
+<script src="<?=base_url()?>assets/plugins/dropzone/min/dropzone.min.js"></script>
+<!-- Page specific script -->
+
 <script src="<?=base_url()?>assets/plugins/select2/js/select2.full.min.js"></script>
 <script>
   $(function () {
@@ -56,13 +76,13 @@
       "responsive": true,
     });
 
-    //Initialize Select2 Elements
-    // $('.select2').select2()
+    // Initialize Select2 Elements
+    $('.select2').select2()
 
-    //Date picker
-    // $('#reservationdate').datetimepicker({
-    //     format: 'L'
-    // });
+    // Date picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
 
   });
 </script>
