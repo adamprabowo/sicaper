@@ -80,6 +80,11 @@
     $('.select2').select2()
 
     // Date picker
+    
+    $('#test').datetimepicker({
+        format: 'L'
+    });
+  
     $('#reservationdate').datetimepicker({
         format: 'L'
     });
