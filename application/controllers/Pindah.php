@@ -75,8 +75,8 @@ class Pindah extends CI_Controller {
 
 	public function deletePerpindahan($id){    
 	    if ($this->m_pindah->deletePindah($id)) {
-	    	$this->session->set_flashdata('success', 'Perpindahan berhasil dihapus.');
-	    	redirect('pindah');
+	    	$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Perpindahan berhasil dihapus');
+			redirect('pindah');
 	    } 
     }
 

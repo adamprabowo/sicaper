@@ -13,5 +13,31 @@ class m_user extends CI_Model {
     	return $query->row();
     }
 
+	public function getAllUser($where){
+    	$this->db->select('*');
+    	$this->db->where($where);
+		$this->db->join('role','user.role_id=role.role_id');
+    	$query = $this->db->get('user');
+    	return $query->result();
+    }
+
+	public function insertUser($insert){
+		$this->db->set($insert);
+		$this->db->insert('user');
+		return $this->db->insert_id();
+	}
+
+	public function updateUser($update,$where){
+		$this->db->set($update);
+		$this->db->where($where);
+		$result = $this->db->update('user');
+		return $result;
+	}
+
+	public function deleteUser($id){
+        $this->db->where('user_id', $id);
+        return $this->db->delete('user');
+    }
+
 }
 ?>

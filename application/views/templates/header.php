@@ -75,6 +75,22 @@
             </a>
           </li>
           <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-table"></i>
+                  <p>
+                    Data Kematian
+                  </p>
+                </a>
+          </li>
+          <li class="nav-item">
+                <a href="<?=base_url()?>pindah" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Data Perpindahan
+                  </p>
+                </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -98,26 +114,18 @@
             </ul>
           </li>
           <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-table"></i>
-                  <p>
-                    Data Kematian
-                  </p>
-                </a>
-          </li>
-          <li class="nav-item">
-                <a href="<?=base_url()?>pindah" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>
-                    Data Perpindahan
-                  </p>
-                </a>
-          </li>
-          <li class="nav-item">
                 <a href="<?=base_url()?>user" class="nav-link">
                   <i class="nav-icon fas fa-user"></i>
                   <p>
                     Pengguna
+                  </p>
+                </a>
+          </li>
+          <li class="nav-item">
+                <a href="<?=base_url()?>user/logout" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>
+                    Sign Out
                   </p>
                 </a>
           </li>

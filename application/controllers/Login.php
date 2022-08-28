@@ -19,11 +19,11 @@ class Login extends CI_Controller {
 		$where['username'] = $this->input->post('username');
 		$where['password'] = md5($this->input->post('password'));
 		$users = $this->m_user->getUser($where);
-		if (!empty($users) && $users->password == $where['password'] && $users->active==1) {
+		if (!empty($users) && $users->password == $where['password'] && $users->is_active==1) {
 			$data = $users;
 				$this->session->set_userdata('user_id',$data->user_id);
 				$this->session->set_userdata('username',$data->username);
-				$this->session->set_userdata('active',$data->active);
+				$this->session->set_userdata('is_active',$data->is_active);
 				redirect('dashboard');
 		}
 		else{

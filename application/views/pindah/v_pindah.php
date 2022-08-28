@@ -190,7 +190,7 @@
                   <!-- /.card-header -->
                   <!-- form start -->
                       <div class="card-body">
-                      <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
+                          <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
                           <div class="form-group">
                               <label for="nik">NIK</label>
                               <input type="number" name="nik" class="form-control" id="nik" value="<?=$pd->nik ?>">
