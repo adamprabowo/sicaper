@@ -40,7 +40,7 @@ class Pindah extends CI_Controller {
 		$insert['created_date'] = date('Y-m-d');
 		$insert['id_operator'] = $this->getSession['user_id'];
         if ($this->m_pindah->createPindah($insert)) {
-        	$this->session->set_flashdata('success', 'Input perpindahan berhasil dibuat');
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Input perpindahan berhasil dibuat');
 			redirect('pindah');
         }
 	}
@@ -55,7 +55,7 @@ class Pindah extends CI_Controller {
 		$update['tgl_pindah'] = date("Y-m-d", strtotime($this->input->post('tgl_pindah')));
 		$update['updated_date'] = date('Y-m-d');
         if ($this->m_pindah->updatePindah($update,$where)) {
-        	$this->session->set_flashdata('success', 'Perpindahan berhasil diubah');
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Perpindahan berhasil diubah');
 			redirect('pindah');
         }
 	}

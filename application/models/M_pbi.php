@@ -23,4 +23,10 @@ class m_pbi extends CI_Model {
 		return $this->db->get('pbi')->result();
 	}
 
+	public function getPbiNonaktif(){
+		$this->db->select('*');
+		$this->db->where('status',0);
+		return $this->db->get('pbi')->result();
+	}
+
 }

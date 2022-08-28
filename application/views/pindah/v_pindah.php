@@ -24,16 +24,9 @@
           
           <div class="col-12">
             <!-- Alert -->
-          <div class="col-md-12">
-            <div class="row">
-            <?php if($this->session->flashdata('success')){ ?>
-              <div class="alert alert-success">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <?php echo $this->session->flashdata('success'); ?>
-              </div>
+            <?php if(!empty($this->session->flashdata('status'))){ ?>
+            <div class="alert alert-info" role="alert"><?= $this->session->flashdata('status'); ?></div>
             <?php } ?>
-            </div>
-          </div>
 
             <div class="card">
               <div class="card-header">
@@ -141,9 +134,9 @@
                           </div>
                           <div class="form-group">
                           <label>Tanggal Pindah</label>
-                              <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                  <input type="text" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                              <div class="input-group date" id="tgl_pindah" data-target-input="nearest">
+                                  <input type="date" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#tgl_pindah"/>
+                                  <div class="input-group-append" data-target="#tgl_pindah" data-toggle="datetimepicker">
                                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                   </div>
                               </div>
@@ -213,7 +206,7 @@
                           <div class="form-group">
                           <label>Tanggal Pindah</label>
                               <div class="input-group date" id="test" data-target-input="nearest">
-                                  <input type="text" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#test" value="<?=$pd->tgl_pindah ?>"/>
+                                  <input type="date" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#test" value="<?=$pd->tgl_pindah ?>"/>
                                   <div class="input-group-append" data-target="#test" data-toggle="datetimepicker">
                                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                   </div>

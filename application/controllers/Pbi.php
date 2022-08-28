@@ -18,10 +18,6 @@ class Pbi extends CI_Controller {
 	public function aktif()
 	{
 		$data['pbi_aktif'] = $this->m_pbi->getPbiAktif();
-		// echo '<pre>';
-		// print_r($data);
-		// echo '</pre>';
-		// die();
 		$this->load->view('templates/header');
 		$this->load->view('pbi/v_pbi_aktif',$data);
 		$this->load->view('templates/footer');
@@ -29,9 +25,43 @@ class Pbi extends CI_Controller {
 
 	public function nonaktif()
 	{
+		$data = [];
+		$q_pbi_nonaktif = $this->m_pbi->getPbiNonaktif();
+		$i=0;
+		foreach ($q_pbi_nonaktif as $param) {
+			$data['pbi_nonaktif'][$i] = $this->returnData($param);
+			$i++;
+		}
 		$this->load->view('templates/header');
-		$this->load->view('pbi/v_pbi_nonaktif');
+		$this->load->view('pbi/v_pbi_nonaktif',$data);
 		$this->load->view('templates/footer');
+	}
+
+	private function returnData($param){
+		$keterangan = '';
+		switch ($param->keterangan) {
+			case 'kematian':
+				$keterangan='Kematian';
+				break;
+			case 'pindah_kab':
+				$keterangan='Pindah Kabupaten';
+				break;
+			case 'pindah_prov':
+				$keterangan='Pindah Provinsi';
+				break;
+		}
+
+		$model = [];
+        if(!empty($param)){
+            $model = [
+                'nik' => $param->nik,
+                'nama' => $param->nama,
+				'keterangan' => $keterangan
+            ];
+        }
+		$return = (object) $model;
+
+		return $return;
 	}
 
 	public function importExcel(){

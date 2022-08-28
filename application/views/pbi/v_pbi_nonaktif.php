@@ -33,23 +33,21 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No</th>
+                  <th width="5%">No</th>
                     <th>NIK</th>
-                    <th>No KK</th>
                     <th>Nama</th>
-                    <th>Status</th>
-                    <th>Note</th>
+                    <th>Keterangan</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>3305230101010001</td>
-                    <td>3305230101220001</td>
-                    <td>Adi Wibowo</td>
-                    <td>Non Aktif</td>
-                    <td>Pindah Kab</td>
-                  </tr>
+                  <?php $no=1; foreach($pbi_nonaktif as $pn){ ?>
+                    <tr>
+                      <td width="5%"><?=$no; ?></td>
+                      <td><?=$pn->nik; ?></td>
+                      <td><?=$pn->nama; ?></td>
+                      <td><?=$pn->keterangan; ?></td>
+                    </tr>
+                  <?php $no++; } ?>
                   </tbody>
                 </table>
               </div>
