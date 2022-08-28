@@ -6,14 +6,14 @@ class Pindah extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->model('m_pindah');
+		$this->load->model('m_desa');
+		$this->load->model('m_user');
+		$this->load->view('pindah/style');
 		$sess = $this->getSession = $this->session->all_userdata();
 		if(empty($sess['user_id'])){
             redirect('login');
         }
-		$this->load->view('pindah/style');
-		$this->load->model('m_pindah');
-		$this->load->model('m_desa');
-		$this->load->model('m_user');
 	}
 	
 	public function index(){

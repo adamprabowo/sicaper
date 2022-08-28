@@ -23,29 +23,44 @@
         <div class="row">
           <div class="col-12">
             
-
+            <?php if(!empty($this->session->flashdata('status'))){ ?>
+            <div class="alert alert-info" role="alert"><?= $this->session->flashdata('status'); ?></div>
+            <?php } ?>
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data PBI Aktif</h3>
+                <!-- Tombol Import Excel-->
+              <form action="<?= base_url('pbi/importExcel'); ?>" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label>Pilih File Excel </label>
+                  <input type="file" name="fileExcel">
+                </div>
+                <div>
+                  <button class='btn btn-success' type="submit">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      Import		
+                  </button>
+                </div>
+              </form>
               </div>
+              
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No</th>
+                    <th width="5%">No</th>
                     <th>NIK</th>
-                    <th>No KK</th>
                     <th>Nama</th>
                   </tr>
                   </thead>
                   <tbody>
+                  <?php $no=1; foreach($pbi_aktif as $paktif){ ?>
                   <tr>
-                    <td>1</td>
-                    <td>3305230101010001</td>
-                    <td>3305230101220001</td>
-                    <td>Adi Wibowo</td>
+                    <td width="5%"><?=$no; ?></td>
+                    <td><?=$paktif->nik; ?></td>
+                    <td><?=$paktif->nama; ?></td>
                   </tr>
+                  <?php $no++; } ?>
                   </tbody>
                 </table>
               </div>
