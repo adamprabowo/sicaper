@@ -17,6 +17,20 @@ class m_pbi extends CI_Model {
 		}
     }
 
+	public function getPbi($where){
+		$this->db->select('*');
+		$this->db->where($where);
+		$query = $this->db->get('pbi');
+		return $query->row();
+	}
+
+	public function updatePbi($update,$where){
+		$this->db->set($update);
+		$this->db->where($where);
+		$result = $this->db->update('pbi');
+		return $result;
+	}
+
 	public function getPbiAktif(){
 		$this->db->select('*');
 		$this->db->where('status',1);

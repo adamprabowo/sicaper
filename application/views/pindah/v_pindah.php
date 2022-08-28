@@ -106,39 +106,56 @@
                   <!-- /.card-header -->
                   <!-- form start -->
                       <div class="card-body">
-                          <div class="form-group">
-                              <label for="nik">NIK</label>
-                              <input type="number" name="nik" class="form-control" id="nik" placeholder="Isikan NIK">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="nik">NIK</label>
+                                  <input type="number" name="nik" class="form-control" id="nik" placeholder="Isikan NIK" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="no_kk">Nomor KK</label>
+                                  <input type="number" name="no_kk" class="form-control" id="noKK" placeholder="Isikan Nomor KK" required>
+                              </div>
+                            </div>
                           </div>
-                          <div class="form-group">
-                              <label for="no_kk">Nomor KK</label>
-                              <input type="number" name="no_kk" class="form-control" id="noKK" placeholder="Isikan Nomor KK">
-                          </div>
-                          <div class="form-group">
-                              <label for="no_skpwni">Nomor SKPWNI</label>
-                              <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" placeholder="Isikan Nomor SKPWNI">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="no_skpwni">Nomor SKPWNI</label>
+                                  <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" placeholder="Isikan Nomor SKPWNI" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Keterangan Pindah</label>
+                                <select name="keterangan" class="form-control" required>
+                                  <option>-- Pilih Keterangan Pindah --</option>
+                                  <option value="pindah_kab">Pindah Kabupaten</option>
+                                  <option value="pindah_prov">Pindah Provinsi</option>
+                                </select>
+                              </div>
+                            </div>
                           </div>
                           <div class="form-group">
                               <label for="nama">Nama</label>
-                              <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama">
+                              <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama" required>
                           </div>
                           <div class="form-group">
                               <label for="desa">Desa</label>
-                              <select type="number" name="id_desa" class="form-control select2" style="width: 100%;">
+                              <select type="number" name="id_desa" class="form-control select2" style="width: 100%;" required>
                                 <?php
                                   foreach ($desa as $ds) {
-                                      echo "<option value=".$ds->id.">$ds->desa</option>";
+                                      echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
                                   }
                                 ?>	
                               </select>
                           </div>
                           <div class="form-group">
                           <label>Tanggal Pindah</label>
-                              <div class="input-group date" id="tgl_pindah" data-target-input="nearest">
-                                  <input type="date" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#tgl_pindah"/>
-                                  <div class="input-group-append" data-target="#tgl_pindah" data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
+                              <div class="input-group" id="tgl_pindah" >
+                                  <input type="date" name="tgl_pindah" class="form-control" required>
                               </div>
                           </div>
                       </div>
@@ -196,22 +213,20 @@
                                 <?php
                                   foreach ($desa as $ds) {
                                     if ($ds->desa==$pd->nama_desa) {
-                                      echo "<option selected value=".$ds->id.">$ds->desa</option>";
+                                      echo "<option selected value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
                                     }
-                                      echo "<option value=".$ds->id.">$ds->desa</option>";
+                                      echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
                                   }
                                 ?>		
                               </select>
                           </div>
                           <div class="form-group">
                           <label>Tanggal Pindah</label>
-                              <div class="input-group date" id="test" data-target-input="nearest">
-                                  <input type="date" name="tgl_pindah" class="form-control datetimepicker-input" data-target="#test" value="<?=$pd->tgl_pindah ?>"/>
-                                  <div class="input-group-append" data-target="#test" data-toggle="datetimepicker">
-                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                  </div>
+                              <div class="input-group date" id="test">
+                                  <input type="date" name="tgl_pindah" class="form-control" value="<?=$pd->tgl_pindah ?>"/>
                               </div>
                           </div>
+                          
                       </div>
                       <!-- /.card-body -->
                   </div>

@@ -8,8 +8,9 @@ class m_desa extends CI_Model {
 	}
 
 	public function getAllDesa(){
-    	$this->db->select('*');
+    	$this->db->select('desa.id as id, kode_kecamatan, desa, kecamatan.kode, kecamatan');
     	$this->db->order_by('desa', 'ASC');
+		$this->db->join('kecamatan','desa.kode_kecamatan=kecamatan.kode');
     	$query = $this->db->get('desa');
     	return $query->result();
     }
@@ -18,7 +19,6 @@ class m_desa extends CI_Model {
     	$this->db->select('*');
     	$this->db->where($where);
     	$query = $this->db->get('desa');
-        // echo $this->db->last_query();
     	return $query->row();
     }
 

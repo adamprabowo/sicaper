@@ -6,8 +6,9 @@ class Pindah extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('m_pindah');
 		$this->load->model('m_desa');
+		$this->load->model('m_pbi');
+		$this->load->model('m_pindah');
 		$this->load->model('m_user');
 		$this->load->view('pindah/style');
 		$sess = $this->getSession = $this->session->all_userdata();
@@ -37,9 +38,21 @@ class Pindah extends CI_Controller {
 		$insert['nama'] = $this->input->post('nama');
 		$insert['id_desa'] = $this->input->post('id_desa');
 		$insert['tgl_pindah'] = date("Y-m-d", strtotime($this->input->post('tgl_pindah')));
+		$insert['keterangan'] = $this->input->post('keterangan');
 		$insert['created_date'] = date('Y-m-d');
 		$insert['id_operator'] = $this->getSession['user_id'];
-        if ($this->m_pindah->createPindah($insert)) {
+        if ($id_pindah = $this->m_pindah->createPindah($insert)) {
+			//cek data PBI
+			$where['nik'] = $insert['nik'];
+			$pbi = $this->m_pbi->getPbi($where);
+			if (!empty($pbi->nik)) {
+				$update['nik'] = $pbi->nik;
+				$update['status'] = 0;
+				$update['keterangan'] = $insert['keterangan'];
+				$update['id_pindah'] = $id_pindah;
+				$update['modified_date'] = date('Y-m-d');
+				$this->m_pbi->updatePbi($update,$where);
+			} 
 			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Input perpindahan berhasil dibuat');
 			redirect('pindah');
         }
