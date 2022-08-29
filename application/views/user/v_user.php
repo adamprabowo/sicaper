@@ -113,6 +113,7 @@
                               <option>-- Pilih Role --</option>
                               <option value="2">Admin</option>
                               <option value="3">Operator</option>
+                              <option value="4">Visitor</option>
                             </select>
                         </div>
                         <div class="form-group">

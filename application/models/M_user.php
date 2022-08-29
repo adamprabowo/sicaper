@@ -9,15 +9,18 @@ class m_user extends CI_Model {
 	public function getUser($where){
     	$this->db->select('*');
     	$this->db->where($where);
+		$this->db->join('role','user.role_id=role.role_id');
     	$query = $this->db->get('user');
     	return $query->row();
     }
 
-	public function getAllUser($where){
+	public function getAllUser($where,$orwhere){
     	$this->db->select('*');
     	$this->db->where($where);
+		$this->db->or_where($orwhere);
 		$this->db->join('role','user.role_id=role.role_id');
     	$query = $this->db->get('user');
+		// echo $this->db->last_query(); die();
     	return $query->result();
     }
 

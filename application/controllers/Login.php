@@ -24,6 +24,7 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('user_id',$data->user_id);
 				$this->session->set_userdata('username',$data->username);
 				$this->session->set_userdata('is_active',$data->is_active);
+				$this->session->set_userdata('role_name',$data->role_name);
 				redirect('dashboard');
 		}
 		else{

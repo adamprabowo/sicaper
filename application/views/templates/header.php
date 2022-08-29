@@ -66,6 +66,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator') { ?>
           <li class="nav-item">
             <a href="<?=base_url()?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo "active";}?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -90,6 +91,7 @@
                   </p>
                 </a>
           </li>
+          <?php } ?> 
           <li class="nav-item <?php if($this->uri->segment(1)=="pbi"){echo "menu-open";}?>">
             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="pbi"){echo "active";}?>">
               <i class="nav-icon fas fa-th"></i>
@@ -113,6 +115,7 @@
               </li>
             </ul>
           </li>
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin') { ?>
           <li class="nav-item">
                 <a href="<?=base_url()?>user" class="nav-link <?php if($this->uri->segment(1)=="user"){echo "active";}?>">
                   <i class="nav-icon fas fa-user"></i>
@@ -121,6 +124,7 @@
                   </p>
                 </a>
           </li>
+          <?php } ?> 
           <li class="nav-item">
                 <a href="<?=base_url()?>user/logout" class="nav-link">
                   <i class="nav-icon fas fa-sign-out-alt"></i>

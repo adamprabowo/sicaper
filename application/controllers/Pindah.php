@@ -26,7 +26,8 @@ class Pindah extends CI_Controller {
 			$i++;
 		}
 		$data['desa'] = $this->m_desa->getAllDesa();
-		$this->load->view('templates/header');
+		$sess['session'] = $this->getSession;
+		$this->load->view('templates/header',$sess);
 		$this->load->view('pindah/v_pindah',$data);
 		$this->load->view('templates/footer');
 	}

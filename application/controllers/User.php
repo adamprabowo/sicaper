@@ -18,11 +18,14 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$param['user.role_id'] = 3;
-		$param['is_active'] = 1;
-		$data['users'] = $this->m_user->getAllUser($param);
+		$or_param['user.role_id'] = 4;
 		$role['role_id'] = 3;
-		$data['roles'] = $this->m_role->getRole($role);
-		$this->load->view('templates/header');
+		$or_role['role_id'] = 4;
+		$param['is_active'] = 1;
+		$data['users'] = $this->m_user->getAllUser($param,$or_param);
+		$data['roles'] = $this->m_role->getRole($role,$or_role);
+		$sess['session'] = $this->getSession;
+		$this->load->view('templates/header',$sess);
 		$this->load->view('user/v_user',$data);
 		$this->load->view('templates/footer');
 	}
@@ -61,6 +64,7 @@ class User extends CI_Controller {
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('is_active');
+		$this->session->unset_userdata('role_name');
         $this->session->sess_destroy();
         redirect(site_url().'login');
     }

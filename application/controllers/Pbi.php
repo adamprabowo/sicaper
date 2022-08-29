@@ -17,9 +17,10 @@ class Pbi extends CI_Controller {
 	
 	public function aktif()
 	{
+		$sess['session'] = $this->getSession;
 		$data['pbi_aktif'] = $this->m_pbi->getPbiAktif();
-		$this->load->view('templates/header');
-		$this->load->view('pbi/v_pbi_aktif',$data);
+		$this->load->view('templates/header',$sess);
+		$this->load->view('pbi/v_pbi_aktif',$data,$sess);
 		$this->load->view('templates/footer');
 	}
 
@@ -32,7 +33,8 @@ class Pbi extends CI_Controller {
 			$data['pbi_nonaktif'][$i] = $this->returnData($param);
 			$i++;
 		}
-		$this->load->view('templates/header');
+		$sess['session'] = $this->getSession;
+		$this->load->view('templates/header',$sess);
 		$this->load->view('pbi/v_pbi_nonaktif',$data);
 		$this->load->view('templates/footer');
 	}

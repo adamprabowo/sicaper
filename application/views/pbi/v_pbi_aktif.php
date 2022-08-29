@@ -29,6 +29,7 @@
             <div class="card">
               <div class="card-header">
                 <!-- Tombol Import Excel-->
+              <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' | $session['role_name']=='operator') { ?>
               <form action="<?= base_url('pbi/importExcel'); ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label>Pilih File Excel </label>
@@ -41,6 +42,7 @@
                   </button>
                 </div>
               </form>
+              <?php } ?> 
               </div>
               
               <!-- /.card-header -->

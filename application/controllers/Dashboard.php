@@ -15,7 +15,12 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('templates/header');
+		// echo '<pre>';
+		// print_r($this->getSession);
+		// echo '</pre>';
+		// die();
+		$sess['session'] = $this->getSession;
+		$this->load->view('templates/header',$sess);
 		$this->load->view('dashboard/v_dashboard');
 		$this->load->view('templates/footer');
 	}
