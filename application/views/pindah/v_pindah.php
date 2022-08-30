@@ -50,8 +50,9 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <?php $no=1; foreach($pindah as $pd){ ?>
-                  <tr>
+                  <?php if (!empty($pindah)) {
+                    $no=1; foreach($pindah as $pd){ ?>
+                    <tr>
                     <td width="5%"><?=$no; ?></td>
                     <td><?=$pd->nik; ?></td>
                     <td><?=$pd->no_kk; ?></td>
@@ -74,8 +75,8 @@
                             </li>
                         </ul>
                     </td>
-                  </tr>
-                  <?php $no++; } ?>
+                    </tr>
+                  <?php $no++; }} ?>
                   </tbody>
                 </table>
               </div>
@@ -174,95 +175,96 @@
       </div>
 
       <!-- EDIT -->
-      <?php $no=1; foreach($pindah as $pd){ ?>
-      <div class="modal fade" id="modal_edit_pindah<?=$no?>">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <form method="POST" enctype="multipart/form-data" action="<?=base_url()?>pindah/editPerpindahan">
+      <?php if (!empty($pindah)) {
+        $no=1; foreach($pindah as $pd){ ?> 
+        <div class="modal fade" id="modal_edit_pindah<?=$no?>">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <form method="POST" enctype="multipart/form-data" action="<?=base_url()?>pindah/editPerpindahan">
+                <div class="modal-header">
+                  <h4 class="modal-title">Edit Data Perpindahan</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <!-- jquery validation -->
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                        <div class="card-body">
+                            <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
+                            <div class="form-group">
+                                <label for="nik">NIK</label>
+                                <input type="number" name="nik" class="form-control" id="nik" value="<?=$pd->nik ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="no_kk">Nomor KK</label>
+                                <input type="number" name="no_kk" class="form-control" id="noKK" value="<?=$pd->no_kk ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="no_skpwni">Nomor SKPWNI</label>
+                                <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" value="<?=$pd->no_skpwni ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" class="form-control" id="nama" value="<?=$pd->nama ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="desa">Desa</label>
+                                <select type="number" name="id_desa" class="form-control select2" style="width: 100%;">
+                                  <?php
+                                    foreach ($desa as $ds) {
+                                      if ($ds->desa==$pd->nama_desa) {
+                                        echo "<option selected value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                      }
+                                        echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                    }
+                                  ?>		
+                                </select>
+                            </div>
+                            <div class="form-group">
+                            <label>Tanggal Pindah</label>
+                                <div class="input-group date" id="test">
+                                    <input type="date" name="tgl_pindah" class="form-control" value="<?=$pd->tgl_pindah ?>"/>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <!-- DELETE -->
+        <div class="modal fade" id="modal_delete_pindah<?=$no?>">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Edit Data Perpindahan</h4>
+                <h4 class="modal-title">Konfirmasi</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <!-- jquery validation -->
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                      <div class="card-body">
-                          <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
-                          <div class="form-group">
-                              <label for="nik">NIK</label>
-                              <input type="number" name="nik" class="form-control" id="nik" value="<?=$pd->nik ?>">
-                          </div>
-                          <div class="form-group">
-                              <label for="no_kk">Nomor KK</label>
-                              <input type="number" name="no_kk" class="form-control" id="noKK" value="<?=$pd->no_kk ?>">
-                          </div>
-                          <div class="form-group">
-                              <label for="no_skpwni">Nomor SKPWNI</label>
-                              <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" value="<?=$pd->no_skpwni ?>">
-                          </div>
-                          <div class="form-group">
-                              <label for="nama">Nama</label>
-                              <input type="text" name="nama" class="form-control" id="nama" value="<?=$pd->nama ?>">
-                          </div>
-                          <div class="form-group">
-                              <label for="desa">Desa</label>
-                              <select type="number" name="id_desa" class="form-control select2" style="width: 100%;">
-                                <?php
-                                  foreach ($desa as $ds) {
-                                    if ($ds->desa==$pd->nama_desa) {
-                                      echo "<option selected value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
-                                    }
-                                      echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
-                                  }
-                                ?>		
-                              </select>
-                          </div>
-                          <div class="form-group">
-                          <label>Tanggal Pindah</label>
-                              <div class="input-group date" id="test">
-                                  <input type="date" name="tgl_pindah" class="form-control" value="<?=$pd->tgl_pindah ?>"/>
-                              </div>
-                          </div>
-                          
-                      </div>
-                      <!-- /.card-body -->
-                  </div>
-                  <!-- /.card -->
-              <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <p id="confirm_str">Yakin Hapus Perpindahan <b><?=$pd->nama?></b> ?</p>
               </div>
-            </form>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-
-      <!-- DELETE -->
-      <div class="modal fade" id="modal_delete_pindah<?=$no?>">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Konfirmasi</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p id="confirm_str">Yakin Hapus Perpindahan <b><?=$pd->nama?></b> ?</p>
-            </div>
-            <div class="modal-footer">
-              <a class="btn btn-danger" href="<?=base_url().'pindah/deletePerpindahan/'.$pd->id_pindah ?>"> Hapus </a>
-              <button class="btn btn-default" data-dismiss="modal"> Tidak</button>
+              <div class="modal-footer">
+                <a class="btn btn-danger" href="<?=base_url().'pindah/deletePerpindahan/'.$pd->id_pindah ?>"> Hapus </a>
+                <button class="btn btn-default" data-dismiss="modal"> Tidak</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <?php $no++; } ?>
+      <?php $no++; } } ?>
 
       <!-- /.modal -->
       <!-- /.container-fluid -->

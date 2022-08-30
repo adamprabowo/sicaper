@@ -40,14 +40,16 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <?php $no=1; foreach($pbi_nonaktif as $pn){ ?>
-                    <tr>
-                      <td width="5%"><?=$no; ?></td>
-                      <td><?=$pn->nik; ?></td>
-                      <td><?=$pn->nama; ?></td>
-                      <td><?=$pn->keterangan; ?></td>
-                    </tr>
-                  <?php $no++; } ?>
+                  <?php 
+                    if (!empty($pbi_nonaktif )) {
+                      $no=1; foreach($pbi_nonaktif as $pn){ ?>
+                      <tr>
+                        <td width="5%"><?=$no; ?></td>
+                        <td><?=$pn->nik; ?></td>
+                        <td><?=$pn->nama; ?></td>
+                        <td><?=$pn->keterangan; ?></td>
+                      </tr>
+                  <?php $no++; }} ?> 
                   </tbody>
                 </table>
               </div>
