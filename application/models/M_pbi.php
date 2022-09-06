@@ -43,4 +43,16 @@ class m_pbi extends CI_Model {
 		return $this->db->get('pbi')->result();
 	}
 
+	public function getJumlahPbiAktif(){
+		$this->db->select('count(*) as jumlah');
+		$this->db->where('status',1);
+		return $this->db->get('pbi')->result();
+	}
+
+	public function getJumlahPbiNonaktif(){
+		$this->db->select('count(*) as jumlah');
+		$this->db->where('status',0);
+		return $this->db->get('pbi')->result();
+	}
+
 }

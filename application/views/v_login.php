@@ -13,8 +13,25 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/adminlte.min.css">
+  <style>
+    .new-login-page {
+      -ms-flex-align: center;
+      align-items: center;
+      background: url("./assets/dist/img/bg_gedung_disdukcapil.png");
+      background-size: cover;
+      background-color: #e9ecef;
+      background-repeat: no-repeat;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100vh;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+  </style>
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition new-login-page">
 <?php if (isset($error_message)) {
   echo "<div class='alert alert-warning'>$error_message</div>";
   }elseif ($this->session->flashdata('message')) { ?>

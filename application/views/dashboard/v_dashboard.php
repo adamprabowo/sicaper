@@ -29,14 +29,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?= $pindahHariIni[0]->jumlah?></h3>
 
-                <p>Data Kematian</p>
+                <p>Pindah Hari Ini</p>
               </div>
               <div class="icon">
                 <i class="ion ion-folder"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pindah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -44,14 +44,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3><?= $pindahSemua[0]->jumlah?></h3>
 
-                <p>Data Perpindahan</p>
+                <p>Total Pindah</p>
               </div>
               <div class="icon">
                 <i class="ion ion-filing"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pindah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -59,14 +59,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>22010</h3>
+                <h3><?= $aktif[0]->jumlah?></h3>
 
                 <p>PBI Aktif</p>
               </div>
               <div class="icon">
                 <i class="ion ion-document-text"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pbi/aktif" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -74,14 +74,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3><?= $nonaktif[0]->jumlah?></h3>
 
                 <p>PBI Non Aktif</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?=base_url()?>pbi/nonaktif" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

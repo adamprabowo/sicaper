@@ -8,6 +8,7 @@ class m_pindah extends CI_Model {
 
 	public function getPindah(){
     	$this->db->select('*');
+		$this->db->order_by('id_pindah', 'DESC');
     	$query = $this->db->get('perpindahan');
     	return $query->result();
     }
@@ -29,6 +30,17 @@ class m_pindah extends CI_Model {
         $this->db->where('id_pindah', $id);
         return $this->db->delete('perpindahan');
     }
+
+	public function getJumlahPindahTotal(){
+		$this->db->select('count(*) as jumlah');
+		return $this->db->get('perpindahan')->result();
+	}
+
+	public function getJumlahPindahHariIni(){
+		$this->db->select('count(*) as jumlah');
+		$this->db->where('created_date',date('Y-m-d'));
+		return $this->db->get('perpindahan')->result();
+	}
 
 
 }

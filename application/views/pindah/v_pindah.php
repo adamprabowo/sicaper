@@ -41,11 +41,10 @@
                   <tr>
                     <th width="5%">No</th>
                     <th>NIK</th>
-                    <th>No KK</th>
-                    <th>No SKPWNI</th>
                     <th>Nama</th>
-                    <th>Desa</th>
-                    <th>Pindah</th>
+                    <th>Tanggal Pindah</th>
+                    <th>Desa Asal</th>
+                    <th>Tujuan Pindah</th>
                     <th>Aksi</th> 
                   </tr>
                   </thead>
@@ -55,24 +54,24 @@
                     <tr>
                     <td width="5%"><?=$no; ?></td>
                     <td><?=$pd->nik; ?></td>
-                    <td><?=$pd->no_kk; ?></td>
-                    <td><?=$pd->no_skpwni; ?></td>
                     <td><?=$pd->nama; ?></td>
-                    <td><?=$pd->nama_desa; ?></td>
                     <td><?=$pd->tgl_pindah; ?></td>
+                    <td><?=$pd->nama_desa."<br>\n". "RT : ".$pd->rt."&emsp;RW : ".$pd->rw; ?></td>
+                    <td><?=$pd->keterangan?></td>
                     <td>
-                        <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
                                 <a href="#" class="edit_pindah" data-toggle="modal" data-target="#modal_edit_pindah<?=$no?>" id="edit_pindah">
                                   <i class="fa fa-edit" style="color:orange"></i>
                                 </a>
                             </li>
+                            <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin') { ?>
                             <li class="list-inline-item">
                                 <a href="#" class="delete_pindah" data-toggle="modal" data-target="#modal_delete_pindah<?=$no?>" id="delete_pindah">
                                   <i class="fa fa-trash" style="color:red"></i>
                                 </a>
                             </li>
+                            <?php } ?> 
                         </ul>
                     </td>
                     </tr>
@@ -116,55 +115,64 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="no_kk">Nomor KK</label>
-                                  <input type="number" name="no_kk" class="form-control" id="noKK" placeholder="Isikan Nomor KK" required>
-                              </div>
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama" required>
+                            </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="no_skpwni">Nomor SKPWNI</label>
-                                  <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" placeholder="Isikan Nomor SKPWNI" required>
+                              <label>Tanggal Pindah</label>
+                                  <div class="input-group" id="tgl_pindah" >
+                                      <input type="date" name="tgl_pindah" class="form-control" required>
+                                  </div>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Keterangan Pindah</label>
+                                <label>Tujuan Pindah</label>
                                 <select name="keterangan" class="form-control" required>
-                                  <option>-- Pilih Keterangan Pindah --</option>
+                                  <option>-- Pilih Tujuan Pindah --</option>
                                   <option value="pindah_kab">Pindah Kabupaten</option>
                                   <option value="pindah_prov">Pindah Provinsi</option>
                                 </select>
                               </div>
                             </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="nama">Nama</label>
-                              <input type="text" name="nama" class="form-control" id="nama" placeholder="Isikan Nama" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="desa">Desa</label>
-                              <select type="number" name="id_desa" class="form-control select2" style="width: 100%;" required>
-                                <?php
-                                  foreach ($desa as $ds) {
-                                      echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
-                                  }
-                                ?>	
-                              </select>
-                          </div>
-                          <div class="form-group">
-                          <label>Tanggal Pindah</label>
-                              <div class="input-group" id="tgl_pindah" >
-                                  <input type="date" name="tgl_pindah" class="form-control" required>
+                          </div>  
+                          <div class="row">   
+                            <div class="col-md-6">                    
+                              <div class="form-group">
+                                  <label for="desa">Desa Asal</label>
+                                  <select type="number" name="id_desa" class="form-control select2" style="width: 100%;" required>
+                                  <option>-- Pilih Desa Asal --</option>
+                                    <?php
+                                      foreach ($desa as $ds) {
+                                          echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                      }
+                                    ?>	
+                                  </select>
+                              </div>  
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                  <label for="RT">RT</label>
+                                  <input type="text" name="rt" class="form-control" id="rt" placeholder="Isikan RT" required>
                               </div>
-                          </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                  <label for="RW">RW</label>
+                                  <input type="text" name="rw" class="form-control" id="rw" placeholder="Isikan RW" required>
+                              </div>
+                            </div>
+                          </div>                        
                       </div>
                       <!-- /.card-body -->
                   </div>
                   <!-- /.card -->
               <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
             </form>
@@ -192,43 +200,77 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                         <div class="card-body">
-                            <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
-                            <div class="form-group">
-                                <label for="nik">NIK</label>
-                                <input type="number" name="nik" class="form-control" id="nik" value="<?=$pd->nik ?>">
+                        <input type="hidden" name="id_pindah" id="id_pindah" value="<?=$pd->id_pindah ?>">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="nik">NIK</label>
+                                  <input type="number" name="nik" class="form-control" id="nik" value="<?=$pd->nik ?>">
+                              </div>
                             </div>
-                            <div class="form-group">
-                                <label for="no_kk">Nomor KK</label>
-                                <input type="number" name="no_kk" class="form-control" id="noKK" value="<?=$pd->no_kk ?>">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="nama">Nama</label>
+                                  <input type="text" name="nama" class="form-control" id="nama" value="<?=$pd->nama ?>">
+                              </div>
                             </div>
-                            <div class="form-group">
-                                <label for="no_skpwni">Nomor SKPWNI</label>
-                                <input type="text" name="no_skpwni" class="form-control" id="no_skpwni" value="<?=$pd->no_skpwni ?>">
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                              <label>Tanggal Pindah</label>
+                                  <div class="input-group date" id="date">
+                                      <input type="date" name="tgl_pindah" class="form-control" value="<?=date('Y-m-d',strtotime($pd->tgl_pindah))  ?>"/>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" class="form-control" id="nama" value="<?=$pd->nama ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="desa">Desa</label>
-                                <select type="number" name="id_desa" class="form-control select2" style="width: 100%;">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Tujuan Pindah</label>
+                                <select name="keterangan" class="form-control" required>
                                   <?php
-                                    foreach ($desa as $ds) {
-                                      if ($ds->desa==$pd->nama_desa) {
-                                        echo "<option selected value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                      if ($pd->keterangan=='Pindah Kabupaten') {
+                                        echo "<option selected value='pindah_kab'>Pindah Kabupaten</option>";
                                       }
-                                        echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
-                                    }
+                                      else {
+                                        echo "<option selected value='pindah_prov'>Pindah Provinsi</option>";
+                                      }
+                                        echo "<option value='pindah_kab'>Pindah Kabupaten</option>";
+                                        echo "<option value='pindah_prov'>Pindah Provinsi</option>";
                                   ?>		
                                 </select>
+                              </div>
                             </div>
-                            <div class="form-group">
-                            <label>Tanggal Pindah</label>
-                                <div class="input-group date" id="test">
-                                    <input type="date" name="tgl_pindah" class="form-control" value="<?=$pd->tgl_pindah ?>"/>
-                                </div>
+                          </div>  
+                          <div class="row">   
+                            <div class="col-md-6">                    
+                              <div class="form-group">
+                                  <label for="desa">Desa Asal</label>
+                                  <select type="number" name="id_desa" class="form-control select2" style="width: 100%;">
+                                    <?php
+                                      foreach ($desa as $ds) {
+                                        if ($ds->desa==$pd->nama_desa) {
+                                          echo "<option selected value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                        }
+                                          echo "<option value=".$ds->id.">$ds->desa - $ds->kecamatan</option>";
+                                      }
+                                    ?>		
+                                  </select>
+                              </div>
                             </div>
-                            
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                  <label for="RT">RT</label>
+                                  <input type="text" name="rt" class="form-control" id="rt" placeholder="Isikan RT" value="<?=$pd->rt ?>">
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                  <label for="RW">RW</label>
+                                  <input type="text" name="rw" class="form-control" id="rw" placeholder="Isikan RW" value="<?=$pd->rw ?>">
+                              </div>
+                            </div>
+                          </div>                        
                         </div>
                         <!-- /.card-body -->
                     </div>

@@ -45,7 +45,7 @@
           <img src="<?=base_url()?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Administrator</a>
+          <a href="#" class="d-block"><?=$session['username'] ?></a>
         </div>
       </div>
 
@@ -66,7 +66,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator') { ?>
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator' | $session['role_name']=='visitor') { ?>
           <li class="nav-item">
             <a href="<?=base_url()?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo "active";}?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -75,14 +75,15 @@
                 </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     Data Kematian
                   </p>
                 </a>
-          </li>
+          </li> -->
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator') { ?>
           <li class="nav-item">
                 <a href="<?=base_url()?>pindah" class="nav-link <?php if($this->uri->segment(1)=="pindah"){echo "active";}?>">
                   <i class="nav-icon fas fa-book"></i>
@@ -91,6 +92,7 @@
                   </p>
                 </a>
           </li>
+          <?php } ?> 
           <?php } ?> 
           <li class="nav-item <?php if($this->uri->segment(1)=="pbi"){echo "menu-open";}?>">
             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="pbi"){echo "active";}?>">
