@@ -43,9 +43,11 @@
     <div class="card-header text-center">
       <!-- <a href="<?=base_url()?>assets/index2.html" class="h1"><b>SICAPER</b> <sub>kependudukan</sub></a> -->
       <h1><b>SICAPER</b></h1>
+      <sup>Sistem Informasi Pencatatan Perpindahan Penduduk</sup>
+      <p>Disduckapil Kabupaten Kebumen</p>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <!-- <p class="login-box-msg">Sign in to start your session</p> -->
 
       <form action="<?=base_url()?>login/action" method="post">
         <div class="input-group mb-3">
