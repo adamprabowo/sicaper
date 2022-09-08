@@ -56,8 +56,8 @@ class Pbi extends CI_Controller {
 		$model = [];
         if(!empty($param)){
             $model = [
+				'no' => $param->id_pbi,
                 'nik' => $param->nik,
-                'nama' => $param->nama,
 				'keterangan' => $keterangan
             ];
         }
@@ -78,11 +78,9 @@ class Pbi extends CI_Controller {
 				{
 					$id_pbi = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
 					$nik = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-					$nama = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 					$temp_data[] = array(
 						'id_pbi'	=> $id_pbi,
 						'nik'		=> $nik,
-						'nama'		=> $nama,
 						'status'	=> 1,
 						'created_date' => date('Y-m-d')
 					); 	

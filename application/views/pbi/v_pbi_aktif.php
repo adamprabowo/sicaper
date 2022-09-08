@@ -52,17 +52,16 @@
                   <tr>
                     <th width="5%">No</th>
                     <th>NIK</th>
-                    <th>Nama</th>
+                    <!-- <th>Nama</th> -->
                   </tr>
                   </thead>
                   <tbody>
-                  <?php $no=1; foreach($pbi_aktif as $paktif){ ?>
+                  <?php foreach($pbi_aktif as $paktif){ ?>
                   <tr>
-                    <td width="5%"><?=$no; ?></td>
+                    <td width="5%"><?=$paktif->id_pbi; ?></td>
                     <td><?=$paktif->nik; ?></td>
-                    <td><?=$paktif->nama; ?></td>
                   </tr>
-                  <?php $no++; } ?>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>
