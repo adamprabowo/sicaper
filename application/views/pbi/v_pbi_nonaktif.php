@@ -35,21 +35,19 @@
                   <tr>
                   <th width="5%">No</th>
                     <th>NIK</th>
-                    <th>Nama</th>
                     <th>Keterangan</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php 
                     if (!empty($pbi_nonaktif )) {
-                      $no=1; foreach($pbi_nonaktif as $pn){ ?>
+                      foreach($pbi_nonaktif as $pn){ ?>
                       <tr>
-                        <td width="5%"><?=$no; ?></td>
+                        <td width="5%"><?=$pn->no; ?></td>
                         <td><?=$pn->nik; ?></td>
-                        <td><?=$pn->nama; ?></td>
                         <td><?=$pn->keterangan; ?></td>
                       </tr>
-                  <?php $no++; }} ?> 
+                  <?php }} ?> 
                   </tbody>
                 </table>
               </div>

@@ -15,44 +15,14 @@ class Pbi extends CI_Controller {
         }
 	}
 	
-	//method pertama yang akan di eksekusi
-    public function aktif()
-    {
+	public function aktif()
+	{
 		$sess['session'] = $this->getSession;
 		$data['pbi_aktif'] = $this->m_pbi->getPbiAktif();
 		$this->load->view('templates/header',$sess);
 		$this->load->view('pbi/v_pbi_aktif',$data,$sess);
 		$this->load->view('templates/footer');
-    }
-
-	public function ajax_list()
-    {
-        header('Content-Type: application/json');
-        $list = $this->m_pbi->get_datatables();
-        $data = array();
-        $no = $this->input->post('start');
-        //looping data mahasiswa
-        foreach ($list as $pbi) {
-            $no++;
-            $row = array();
-            $row[] = $pbi->id_pbi;
-            $row[] = $pbi->nik;
-            $data[] = $row;
-        }
-
-        $output = array(
-            "draw" => $this->input->post('draw'),
-            "recordsTotal" => $this->m_pbi->count_all(),
-            "recordsFiltered" => $this->m_pbi->count_filtered(),
-            "data" => $data,
-        );
-		// echo '<pre>';
-		// print_r($output);
-		// echo '</pre>';
-		// die();
-        //output to json format
-        $this->output->set_output(json_encode($output));
-    }
+	}
 
 	public function nonaktif()
 	{

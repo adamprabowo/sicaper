@@ -47,7 +47,7 @@
               
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="pbiAktif" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th width="5%">No</th>
@@ -55,7 +55,14 @@
                     <!-- <th>Nama</th> -->
                   </tr>
                   </thead>
-                  
+                  <tbody>
+                  <?php foreach($pbi_aktif as $paktif){ ?>
+                  <tr>
+                    <td width="5%"><?=$paktif->id_pbi; ?></td>
+                    <td><?=$paktif->nik; ?></td>
+                  </tr>
+                  <?php } ?>
+                  </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -71,20 +78,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <script>
-        //setting datatables
-        $('#pbiAktif').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
-            },
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "ajax": {
-                //panggil method ajax list dengan ajax
-                "url": 'http://localhost/sicaper/pbi/ajax_list',
-                "type": "POST"
-            }
-        });
-    </script>
