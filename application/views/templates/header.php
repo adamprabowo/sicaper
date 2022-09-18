@@ -115,6 +115,12 @@
                   <p>Non Aktif</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?=base_url()?>pbi/file" class="nav-link <?php if($this->uri->segment(2)=="nonaktif"){echo "active";}?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>File</p>
+                </a>
+              </li>
             </ul>
           </li>
           <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin') { ?>

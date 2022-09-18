@@ -29,11 +29,13 @@
             <?php } ?>
 
             <div class="card">
+              <?php if($session['role_name']=='operator') { ?>
               <div class="card-header">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Input 
                     <i class="fa fa-plus"></i>
                 </button>
               </div>
+              <?php } ?> 
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="pindahTable" class="table table-bordered table-striped">

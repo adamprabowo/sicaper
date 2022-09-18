@@ -7,6 +7,7 @@ class Pbi extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library(array('excel','session'));
+		$this->load->model('m_file');
 		$this->load->model('m_pbi');
 		$this->load->view('pbi/style');
 		$sess = $this->getSession = $this->session->all_userdata();
@@ -15,7 +16,6 @@ class Pbi extends CI_Controller {
         }
 	}
 	
-	//method pertama yang akan di eksekusi
     public function aktif()
     {
 		$sess['session'] = $this->getSession;
@@ -31,7 +31,6 @@ class Pbi extends CI_Controller {
         $list = $this->m_pbi->get_datatables();
         $data = array();
         $no = $this->input->post('start');
-        //looping data mahasiswa
         foreach ($list as $pbi) {
             $no++;
             $row = array();
@@ -46,10 +45,6 @@ class Pbi extends CI_Controller {
             "recordsFiltered" => $this->m_pbi->count_filtered(),
             "data" => $data,
         );
-		// echo '<pre>';
-		// print_r($output);
-		// echo '</pre>';
-		// die();
         //output to json format
         $this->output->set_output(json_encode($output));
     }
@@ -131,6 +126,58 @@ class Pbi extends CI_Controller {
 		}else{
 			echo "Tidak ada file yang masuk";
 		}
+	}
+
+	public function file()
+	{
+		$data['file'] = $this->m_file->getFile();
+		$sess['session'] = $this->getSession;
+		$this->load->view('templates/header',$sess);
+		$this->load->view('pbi/v_pbi_file',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function importFile(){
+		$data_file = $_POST;
+		
+		if(!empty($_FILES['fileExcel']) && $_FILES['fileExcel']['name'] != ""){
+
+            $pathfile = pathinfo($_FILES['fileExcel']['name']);
+            $config['upload_path'] = './assets/file/uploads/';
+            $config['allowed_types'] = 'xlsx|csv|xls';
+			$config['max_size'] = '10000000'; 
+			$config['overwrite'] = true;
+			$config['encrypt_name'] = FALSE;
+			$config['remove_spaces'] = TRUE;
+            $config['file_name'] = $_FILES['fileExcel']['name'];
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            if($this->upload->do_upload('fileExcel')){
+                $file = $this->upload->data();
+                $insert['path_file'] = '/assets/file/uploads/' . $file['file_name'];
+				$insert['nama_file'] = $data_file['nama_file'];
+				$insert['tanggal_file'] = $data_file['tanggal_file'];
+				if($this->m_file->insertFile($insert)){
+					$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Data Berhasil ditambahkan');
+					redirect('pbi/file');
+				}
+				else{
+					$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-remove"></span> Terjadi Kesalahan');
+					redirect('pbi/file');
+				}
+            }else{
+            	$insert = '';
+                $_POST['fileExcel'] = '';
+				$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-remove"></span> Terjadi Kesalahan');
+				redirect('pbi/file');
+            }    
+        }else{
+            $_POST['fileExcel'] = '';
+			$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-remove"></span> Terjadi Kesalahan');
+			redirect('pbi/file');
+        }
+		
+		
 	}
 
 

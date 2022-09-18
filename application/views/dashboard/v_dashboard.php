@@ -25,6 +25,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator') { ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
@@ -54,6 +55,9 @@
               <a href="<?=base_url()?>pindah" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <?php } ?> 
+
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='visitor') { ?>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -85,6 +89,7 @@
             </div>
           </div>
           <!-- ./col -->
+          <?php } ?> 
         </div>
         <!-- /.row -->
         

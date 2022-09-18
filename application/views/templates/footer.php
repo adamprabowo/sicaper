@@ -65,6 +65,9 @@
     $("#pindahTable").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         }).buttons().container().appendTo('#pindahTable_wrapper .col-md-6:eq(0)');
+    $("#penggunaTable").DataTable({
+    "responsive": true, "lengthChange": false, "autoWidth": false,
+    }).buttons().container().appendTo('#penggunaTable_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
