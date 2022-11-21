@@ -518,10 +518,10 @@ INSERT INTO `desa` (`id`, `kode_kecamatan`, `kode_desa`, `desa`, `kd_desa_dtks`,
 
 CREATE TABLE `file` (
   `id_file` int NOT NULL,
-  `nama_file` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nama_file` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `path_file` text NOT NULL,
   `tanggal_file` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `file`
@@ -595,7 +595,7 @@ CREATE TABLE `pbi` (
   `id_pindah` int DEFAULT NULL,
   `modified_date` date DEFAULT NULL,
   `created_date` date DEFAULT NULL COMMENT 'Tanggal import'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pbi`
@@ -35322,16 +35322,16 @@ INSERT INTO `pbi` (`id_pbi`, `nik`, `nama`, `status`, `keterangan`, `id_pindah`,
 CREATE TABLE `perpindahan` (
   `id_pindah` int NOT NULL,
   `nik` varchar(16) NOT NULL,
-  `nama` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nama` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tgl_pindah` date DEFAULT NULL,
   `id_desa` int DEFAULT NULL,
-  `rt` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `rw` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rt` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rw` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `keterangan` varchar(45) DEFAULT NULL COMMENT 'pindah_kab / pindah_prov',
   `created_date` date DEFAULT NULL,
   `updated_date` date DEFAULT NULL,
   `id_operator` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `perpindahan`
@@ -35354,7 +35354,7 @@ INSERT INTO `perpindahan` (`id_pindah`, `nik`, `nama`, `tgl_pindah`, `id_desa`, 
 CREATE TABLE `role` (
   `role_id` int NOT NULL,
   `role_name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `role`
@@ -35378,7 +35378,7 @@ CREATE TABLE `user` (
   `password` varchar(45) NOT NULL,
   `role_id` int DEFAULT NULL,
   `is_active` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
