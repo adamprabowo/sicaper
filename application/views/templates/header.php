@@ -93,6 +93,16 @@
                 </a>
           </li>
           <?php } ?> 
+          <?php if($session['role_name']=='superadmin' || $session['role_name']=='admin' || $session['role_name']=='operator' ) { ?>
+          <li class="nav-item">
+                <a href="<?=base_url()?>kematian" class="nav-link <?php if($this->uri->segment(1)=="kematian"){echo "active";}?>">
+                  <i class="nav-icon fas fa-table"></i>
+                  <p>
+                    Data Kematian
+                  </p>
+                </a>
+          </li>
+          <?php } ?> 
           <?php } ?> 
           <li class="nav-item <?php if($this->uri->segment(1)=="pbi"){echo "menu-open";}?>">
             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="pbi"){echo "active";}?>">
